@@ -879,6 +879,9 @@ typedef struct
 // except for 'client->pers'
 struct gclient_s
 {
+	int			sonicScore;
+	float		sonicDashCD;
+
 	// known to server
 	player_state_t	ps;				// communicated by server to clients
 	int				ping;

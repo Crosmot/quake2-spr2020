@@ -1577,6 +1577,14 @@ void ClientThink (edict_t *ent, usercmd_t *ucmd)
 	level.current_entity = ent;
 	client = ent->client;
 
+	float currTime = level.time;
+	float dashCD = ent->client->sonicDashCD;
+
+	if (currTime - dashCD <= 1.0)
+	{
+		SonicDash(ent);
+	}
+
 	if (level.intermissiontime)
 	{
 		client->ps.pmove.pm_type = PM_FREEZE;

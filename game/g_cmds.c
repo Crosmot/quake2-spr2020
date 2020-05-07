@@ -899,6 +899,24 @@ void Cmd_PlayerList_f(edict_t *ent)
 	gi.cprintf(ent, PRINT_HIGH, "%s", text);
 }
 
+/*
+=================
+Cmd_SonicDash_f	
+This is a function I added to create a dash
+=================
+*/
+void Cmd_SonicDash_f(edict_t *ent)
+{
+	char *cmd;
+	cmd = gi.args();
+	float currTime = level.time;
+	float dashCD = ent->client->sonicDashCD;
+
+	if ( currTime - dashCD >= 1.0);
+	{
+		ent->client->sonicDashCD = level.time;
+	}
+}
 
 /*
 =================
@@ -983,8 +1001,13 @@ void ClientCommand (edict_t *ent)
 		Cmd_Kill_f (ent);
 	else if (Q_stricmp (cmd, "putaway") == 0)
 		Cmd_PutAway_f (ent);
-	else if (Q_stricmp (cmd, "wave") == 0)
-		Cmd_Wave_f (ent);
+	else if (Q_stricmp(cmd, "wave") == 0)
+		Cmd_Wave_f(ent);
+	
+	//added this line for DASH
+	else if (Q_stricmp(cmd, "sonicDash") == 0)
+		Cmd_SonicDash_f;
+
 	else if (Q_stricmp(cmd, "playerlist") == 0)
 		Cmd_PlayerList_f(ent);
 	else	// anything that doesn't match a command will be a chat

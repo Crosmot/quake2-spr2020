@@ -859,7 +859,7 @@ void Weapon_Blaster_Fire (edict_t *ent)
 void Weapon_Blaster (edict_t *ent)
 {
 	static int	pause_frames[]	= {19, 32, 0};
-	static int	fire_frames[]	= {5, 0};
+	static int	fire_frames[]	= {5, 7, 0};
 
 	Weapon_Generic (ent, 4, 8, 52, 55, pause_frames, fire_frames, Weapon_Blaster_Fire);
 }
@@ -888,7 +888,7 @@ void Weapon_HyperBlaster_Fire (edict_t *ent)
 				ent->pain_debounce_time = level.time + 1;
 			}
 			NoAmmoWeaponChange (ent);
-		}
+		}  
 		else
 		{
 			rotation = (ent->client->ps.gunframe - 5) * 2*M_PI/6;
